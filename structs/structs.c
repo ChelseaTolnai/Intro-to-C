@@ -8,7 +8,10 @@
     Person should have the fields `name`, `age`, `height`, and `weight`.
 */
 typedef struct Person {
-
+    char *name;
+    int age;
+    int height;
+    int weight;
 } Person;
 
 /*
@@ -21,7 +24,12 @@ typedef struct Person {
 */
 Person *createPerson(char *name, int age, int height, int weight)
 {
-
+    Person *who = malloc(sizeof(Person));
+    who->name = string_dup(name);
+    who->age = age;
+    who->height = height;
+    who->weight = weight;
+    return who;
 }
 
 /*
@@ -30,7 +38,12 @@ Person *createPerson(char *name, int age, int height, int weight)
 */
 void destroyPerson(Person *who)
 {
-
+    if (who->name != NULL) {
+        free(who->name);
+    }
+    if (who != NULL) {
+        free(who);
+    }
 }
 
 #ifndef TESTING
